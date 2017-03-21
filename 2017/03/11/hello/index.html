@@ -171,7 +171,19 @@
 <p>##分类和标签<br>hexo new出来的md 文件中, 开始的几行如下图:<br><img src="http://omoo8c568.bkt.clouddn.com/20170314148942389732759.jpg" alt="20170314148942389732759.jpg"></p>
 <p>看名字就能看出来了,就是对篇内容的分类,都是可以修改的,测试一下就知道了,没什么可聊的.<br>ps:某些hexo主题是不支持categories的,比如我用的 <a href="https://blog.hinpc.com/" target="_blank" rel="external">Daily</a> .</p>
 <h2 id="多说"><a href="#多说" class="headerlink" title="多说"></a><a href="http://dev.duoshuo.com" target="_blank" rel="external">多说</a></h2><p>添加评论功能, 多说是另一个新的评论系统,可以让博客er 方便的添加和管理评论,根据教程一步步来就可以了,没意思!</p>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>待定…</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>###自定义域名<br>之前在腾讯云上买了个自己的域名,之前没时间,都是晚上12点左右写文章,懒得花更多精力去搞域名的事情. 今天想着还是折腾一下,给博客绑定域名.</p>
+<p><a href="https://help.github.com/articles/setting-up-a-custom-subdomain/" target="_blank" rel="external">官方教程</a></p>
+<p>好像已经没有什么可写的了,域名的东西也不是很懂.</p>
+<p>提两个没想明白的问题吧:</p>
+<ol>
+<li>为什么Cname 连接需要 github page 端保存域名?<br> 经测试原始的talkfiled.github.io 域名也是可以访问的,说明cname连接是将指向blog.talkfiled.xzy的连接转向了原来的域名, 但当我不在github page 保存新域名是,是不能访问到的, 难道就是因为http请求和https请求的不同?</li>
+<li>有没有一个办法可以直接设置普通项目网站?</li>
+</ol>
+<p><img src="http://omoo8c568.bkt.clouddn.com/20170322149011435341388.jpg" alt="20170322149011435341388.jpg"></p>
+<p>根据github page的设置页面所示, 每个用户/组织可以通过创建名称为username.github.io的仓库构建一个域名. 经测试,如果不是以这种形式创建的仓库,其域名格式为 username.github.io/repository_name 的网址. </p>
+<p>这样网址中有一个斜线,在域名转发填写cname配置的时候通不过验证(确实也不是个合法域名)</p>
+<p>有没有办法不使用特殊域名, 直接设置到一个单独项目网址上?</p>
+<p>####ps:  经测试, 如果创建了username.github.io 并且配置了自定义域名之后, 新生成的网站链接都会变成自定义域名.</p>
 
         </div>
       </article>

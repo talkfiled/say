@@ -16,7 +16,7 @@
 
   <!--Open Graph Title-->
   
-      <meta property="og:title" content="talk 田"/>
+      <meta property="og:title" content="ios 问题备忘录(1)"/>
   
   <!--Open Graph Description-->
   
@@ -24,7 +24,7 @@
   <meta property="og:site_name" content="talk 田"/>
   <!--Type page-->
   
-      <meta property="og:type" content="website" />
+      <meta property="og:type" content="article" />
   
   <!--Page Cover-->
   
@@ -33,7 +33,7 @@
 
   <!-- Title -->
   
-  <title>Archives - talk 田</title>
+  <title>ios 问题备忘录(1) - talk 田</title>
 
 
   <link rel="shortcut icon" href="https://hexo.io/icon/favicon-96x96.png">
@@ -105,83 +105,66 @@
 
 
   <!-- Main Content -->
-  
-
-<!-- Main Content -->
-<div class="archive content-area">
-  <div class="container">
-    <h1 class="entry-title">Archives</h1>
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <!-- Use lodash to classify posts. See https://lodash.com/docs#groupBy
-          1. group site.posts by year
-          2. sort posts-in-one-year by Month and Day
-        -->
-        
-
-        
-          <h2 class="year">2017</h2>
-          <ul class="list">
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            ios 问题备忘录(1)
             
-  <li>
-    <span class="date">
-      2017-03-22
-    </span>
-    <a href="/2017/03/22/ios-lean-problems/" class="title">
-      ios 问题备忘录(1)
-    </a>
-  </li>
+          </h1>
+          <p class="posted-on">
+          2017-03-22
+          </p>
+          <div class="tags-links">
+            
+              
+                <a href="/tags/ios 问题 备忘录/" rel="tag">
+                  ios 问题 备忘录
+                </a>
+              
+            
+          </div>
+        </div>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <p>今天写代码遇到两个问题,不知道什么原因. 在这里记录一下: </p>
+<h2 id="1-使用uitableviewcontroller时-跳转出去之后再返回页面变黑问题"><a href="#1-使用uitableviewcontroller时-跳转出去之后再返回页面变黑问题" class="headerlink" title="1 使用uitableviewcontroller时, 跳转出去之后再返回页面变黑问题."></a>1 使用uitableviewcontroller时, 跳转出去之后再返回页面变黑问题.</h2><p>我继承了UITableViewController 实现了一个Controller<br>直接使用 self.tableView 添加数据,发现点击跳转之后<br>[self.navigationController pushViewController:mTableViewController animated:YES];<br>再返回整个界面都变黑了 </p>
+<p>于是自己又添加了个contenttableView实现,这样是好的. </p>
+<h2 id="tableheaderview-不显示问题"><a href="#tableheaderview-不显示问题" class="headerlink" title="tableheaderview 不显示问题."></a>tableheaderview 不显示问题.</h2><p>因为需要实现头部view的效果,使用两个section 发现整个row 被选中后的状态会加一个灰色的选装状态<br>于是想通过tableheaderview实现;<br>但是在contenttable 中直接添加tableheaderview并不会显示出来;<br>直接修改继承关系,将父类改为UIViewController 并实现UITableViewDataSource, UITableViewDelegate两个协议好用了 </p>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>代码不方便上传,等我有空单独搞一份实例代码在验证验证, 说不定就找到原因了.</p>
 
-  <li>
-    <span class="date">
-      2017-03-20
-    </span>
-    <a href="/2017/03/20/android-reverse/" class="title">
-      Android逆向 (1)
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2017-03-16
-    </span>
-    <a href="/2017/03/16/ios-learn-2/" class="title">
-      ios 开发 学习日记(2)
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2017-03-15
-    </span>
-    <a href="/2017/03/15/ios-learn-1/" class="title">
-      ios 开发 学习日记(1)
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2017-03-11
-    </span>
-    <a href="/2017/03/11/hello/" class="title">
-      hexo 折腾记
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2017-03-11
-    </span>
-    <a href="/2017/03/11/hello-world/" class="title">
-      Hexo Hello_World
-    </a>
-  </li>
-
-
-          </ul>
-        
-      </div>
+        </div>
+      </article>
     </div>
+    <!-- Comments -->
+    <div class="container">
+      
+<section id="comment">
+  <!-- <h1 class="title">Comments</h1> -->
+
+  
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-ios-lean-problems" data-title="ios 问题备忘录(1)" data-url="https://talkfiled.github.io./2017/03/22/ios-lean-problems/"></div>
+    <!-- 多说评论框 end -->
+  
+</section>
+
+
+    </div>
+    <!-- Pre or Next -->
+    <div class="nav-links">
+      
+      
+        <div class="nav-next">
+          <a href="/2017/03/20/android-reverse/" rel="prev">Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
+        </div>
+      
+    </div>
+
   </div>
 </div>
 
