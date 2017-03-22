@@ -16,7 +16,7 @@
 
   <!--Open Graph Title-->
   
-      <meta property="og:title" content="ios 问题备忘录(1)"/>
+      <meta property="og:title" content="ios 学习日记(3)"/>
   
   <!--Open Graph Description-->
   
@@ -33,7 +33,7 @@
 
   <!-- Title -->
   
-  <title>ios 问题备忘录(1) - talk 田</title>
+  <title>ios 学习日记(3) - talk 田</title>
 
 
   <link rel="shortcut icon" href="https://hexo.io/icon/favicon-96x96.png">
@@ -113,7 +113,7 @@
         <!-- Title date & tags -->
         <div class="post-header">
           <h1 class="entry-title">
-            ios 问题备忘录(1)
+            ios 学习日记(3)
             
           </h1>
           <p class="posted-on">
@@ -122,8 +122,8 @@
           <div class="tags-links">
             
               
-                <a href="/tags/ios 问题 备忘录/" rel="tag">
-                  ios 问题 备忘录
+                <a href="/tags/ios 奇技淫巧, 一些知识点/" rel="tag">
+                  ios 奇技淫巧, 一些知识点
                 </a>
               
             
@@ -131,11 +131,14 @@
         </div>
         <!-- Post Main Content -->
         <div class="entry-content">
-          <p>今天写代码遇到两个问题,不知道什么原因. 在这里记录一下: </p>
-<h2 id="1-使用uitableviewcontroller时-跳转出去之后再返回页面变黑问题"><a href="#1-使用uitableviewcontroller时-跳转出去之后再返回页面变黑问题" class="headerlink" title="1 使用uitableviewcontroller时, 跳转出去之后再返回页面变黑问题."></a>1 使用uitableviewcontroller时, 跳转出去之后再返回页面变黑问题.</h2><p>我继承了UITableViewController 实现了一个Controller<br>直接使用 self.tableView 添加数据,发现点击跳转之后<br>[self.navigationController pushViewController:mTableViewController animated:YES];<br>再返回整个界面都变黑了 </p>
-<p>于是自己又添加了个contenttableView实现,这样是好的. </p>
-<h2 id="tableheaderview-不显示问题"><a href="#tableheaderview-不显示问题" class="headerlink" title="tableheaderview 不显示问题."></a>tableheaderview 不显示问题.</h2><p>因为需要实现头部view的效果,使用两个section 发现整个row 被选中后的状态会加一个灰色的选装状态<br>于是想通过tableheaderview实现;<br>但是在contenttable 中直接添加tableheaderview并不会显示出来;<br>直接修改继承关系,将父类改为UIViewController 并实现UITableViewDataSource, UITableViewDelegate两个协议好用了 </p>
-<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>代码不方便上传,等我有空单独搞一份实例代码在验证验证, 说不定就找到原因了.</p>
+          <p>今天学到两个ios开发相关小技巧, 虽然我一直以为这些是ios开发中的 奇技淫巧 ,不值一提的的trick, 但是既然是初学,而且是日记形式的,就记录一下</p>
+<h2 id="关于tableview"><a href="#关于tableview" class="headerlink" title="关于tableview"></a>关于tableview</h2><p>看一个关于tableview 下拉刷新的控件的时候,看到如下用法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[_contentTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@&quot;cell&quot;];</div></pre></td></tr></table></figure></p>
+<p>在tableview 中注册一个UITableViewCell类,并设置Identifier.<br>看到这个就理解了当初看在storyboard里拖线的时候为啥UITableViewController 直接拖出来会自带一个Cell 了, 当时感觉完全反人类的设计啊, 这样一下就明白了.</p>
+<p>自己手打了一下,发现另外一个注册cell的方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[_contentTableView registerNib:[UINib nibWithNibName:@&quot;tableviewCellxib&quot; bundle:nil]forCellReuseIdentifier:@&quot;riv&quot;];</div></pre></td></tr></table></figure></p>
+<p>代码说明是可以直接注册一个xib文件的,新建一个xib文件, 需要将其root view设置为继承至UITableViewCell;</p>
+<h2 id="渐变颜色"><a href="#渐变颜色" class="headerlink" title="渐变颜色"></a>渐变颜色</h2><p>应该还有其他的渐变颜色的实现方法吧,但网上说这是最简单的一种(好多博文都写了这一种)<br>上代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">CAGradientLayer *gradientLayer = [CAGradientLayer layer];</div><div class="line">//  设置 gradientLayer 的 Frame</div><div class="line">gradientLayer.frame = self.bounds;</div><div class="line">//  创建渐变色数组，需要转换为CGColor颜色</div><div class="line">gradientLayer.colors = @[(id)[UIColor hx_colorWithHexRGBAString:@&quot;#559affff&quot;].CGColor,(id)[UIColor hx_colorWithHexRGBAString:@&quot;#2fb4d9ff&quot;].CGColor];</div><div class="line"></div><div class="line">//  设置两种种颜色变化点，取值范围 0.0~1.0</div><div class="line">//		可以不设置</div><div class="line">//    gradientLayer.locations = @[@(0.0f)];</div><div class="line">//  设置渐变颜色方向，左上点为(0,0), 右下点为(1,1)</div><div class="line">gradientLayer.startPoint = CGPointMake(0, 0);</div><div class="line">gradientLayer.endPoint = CGPointMake(1, 0);</div><div class="line">// 设置圆角弧度 5像素</div><div class="line">gradientLayer.cornerRadius = 5;</div><div class="line">//  添加渐变色到创建的 UIView 上去</div><div class="line">[self.layer addSublayer:gradientLayer];</div></pre></td></tr></table></figure></p>
+<p>以上是我在一个UIVIew 中实现的代码, 直接给self 设置了一个sublayer;</p>
+<p>关于<a href="https://developer.apple.com/reference/quartzcore/cagradientlayer" target="_blank" rel="external">CAGradientLayer</a> 其官方文档说它可以为一个空间设置渐变颜色的背景颜色 和 设置圆角. 可以设置多层级颜色的渐变,在不同位置上的渐变. <img src="https://docs-assets.developer.apple.com/published/ea6ba49ff5/62414639-080e-41fd-96c2-c9379fd8a162.png" alt="样例"></p>
 
         </div>
       </article>
@@ -148,7 +151,7 @@
 
   
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="post-ios-lean-problems" data-title="ios 问题备忘录(1)" data-url="https://talkfiled.github.io./2017/03/22/ios-lean-problems/"></div>
+    <div class="ds-thread" data-thread-key="post-ios-trick" data-title="ios 学习日记(3)" data-url="https://talkfiled.github.io./2017/03/22/ios-trick/"></div>
     <!-- 多说评论框 end -->
   
 </section>
@@ -158,13 +161,9 @@
     <!-- Pre or Next -->
     <div class="nav-links">
       
-        <div class="nav-previous">
-          <a href="/2017/03/22/ios-trick/" rel="prev"><span class="meta-arraw meta-arraw-left"></span> Older Posts</a>
-        </div>
-      
       
         <div class="nav-next">
-          <a href="/2017/03/20/android-reverse/" rel="prev">Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
+          <a href="/2017/03/22/ios-lean-problems/" rel="prev">Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
         </div>
       
     </div>
