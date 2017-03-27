@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!--Description-->
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="talk 田">
+  
+
+  <!--Open Graph Title-->
+  
+      <meta property="og:title" content="ios 列表下拉刷新崩溃问题现象及解决"/>
+  
+  <!--Open Graph Description-->
+  
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="talk 田"/>
+  <!--Type page-->
+  
+      <meta property="og:type" content="article" />
+  
+  <!--Page Cover-->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Title -->
+  
+  <title>ios 列表下拉刷新崩溃问题现象及解决 - talk 田</title>
+
+
+  <link rel="shortcut icon" href="https://hexo.io/icon/favicon-96x96.png">
+
+  <!-- Custom CSS/Sass -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!----------------------------
+  https://github.com/GallenHu/hexo-theme-Daily
+
+ _____            _   _
+|  __ \          (_) | |
+| |  | |   __ _   _  | |  _   _
+| |  | |  / _` | | | | | | | | |
+| |__| | | (_| | | | | | | |_| |
+|_____/   \__,_| |_| |_|  \__, |
+                          __/ |
+                         |___/
+
+    --------------------------->
+
+</head>
+
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="https://hexo.io/logo.svg" alt="talk 田" height="60">
+        
+      </a>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  home
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  archive
+                
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            ios 列表下拉刷新崩溃问题现象及解决
+            
+          </h1>
+          <p class="posted-on">
+          2017-03-27
+          </p>
+          <div class="tags-links">
+            
+              
+                <a href="/tags/bug, ios, 奇技淫巧/" rel="tag">
+                  bug, ios, 奇技淫巧
+                </a>
+              
+            
+          </div>
+        </div>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <h1 id="tableView-崩溃的现象"><a href="#tableView-崩溃的现象" class="headerlink" title="tableView 崩溃的现象"></a>tableView 崩溃的现象</h1><p>今天写了个列表, 需要从网络端读取数据并加载到列表中显示; 既然是个列表就少不了下拉刷新和上拉加载功能, 于是乎在cocoachina 中找到个叫SCRefrsh的控件开始搞起;</p>
+<p>列表写完了发现下拉刷新时一个bug: 在一次刷新操作完成之前,再次下拉列表列表,当鼠标放开时会崩溃;看日志也没有什么有用的信息. 于是一行行开始分析代码. 原代码因为涉及到公司代码不方便放出,于是重新根据找到的原因写了个简单的tableView.</p>
+<p>实现demo: <a href="https://github.com/talkfiled/TableViewRelated/tree/master/TableViewRefresh" target="_blank" rel="external">下拉崩溃 demo</a></p>
+<h4 id="tableview-视图"><a href="#tableview-视图" class="headerlink" title="tableview 视图"></a>tableview 视图</h4><ol>
+<li>ViewController 继承了UITableViewDelegate, UITableViewDataSource 两个协议,并且直接将两个协议的代理对象设置给contentView (UITableView * 对象). </li>
+<li>contentView 以”@cell”为标示注册一个UITableViewCell ;</li>
+<li>实现如下两个接口</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">-(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section&#123;</div><div class="line">    return self.dataSource.count;</div><div class="line">&#125;</div><div class="line"></div><div class="line">-(UITableViewCell*) tableView:(UITableView *) tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath&#123;</div><div class="line">    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@&quot;cell&quot;];</div><div class="line">    cell.textLabel.text = self.dataSource[indexPath.row];</div><div class="line">    return cell;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>其中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@property (nonatomic, strong) NSMutableArray *dataSource;</div></pre></td></tr></table></figure></p>
+<h4 id="下拉刷新监听设置"><a href="#下拉刷新监听设置" class="headerlink" title="下拉刷新监听设置"></a>下拉刷新监听设置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">self.contentView.refresh = [ SCRefresh refreshWithTarget:self HeaderAction:@selector(refresh) FooterAction:@selector(loadMore)];</div></pre></td></tr></table></figure>
+<h4 id="数据加载过程"><a href="#数据加载过程" class="headerlink" title="数据加载过程"></a>数据加载过程</h4><ol>
+<li>controller 初始化时, 加载20条数据</li>
+<li>下拉刷新时,清空self.dataSource并加载新数据</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">-(void) refresh&#123;</div><div class="line">    self.size = 20;</div><div class="line">    NSLog(@&quot; %s &quot;, __func__);</div><div class="line">    [self.dataSource removeAllObjects];</div><div class="line">    __weak __typeof__(self) weakSelf = self;</div><div class="line">    </div><div class="line">    // 模拟延迟操作</div><div class="line">    dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0* NSEC_PER_SEC));</div><div class="line">    dispatch_after(delayTime, dispatch_get_main_queue(), ^&#123;</div><div class="line">        </div><div class="line">        [weakSelf modelChanged];</div><div class="line">        [weakSelf.contentView.refresh endRefreshRefreshType:RefreshOptionHeader];</div><div class="line">    &#125;);</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="崩溃问题"><a href="#崩溃问题" class="headerlink" title="崩溃问题"></a>崩溃问题</h4><ol>
+<li>当self.size =5时,不会出现崩溃问题</li>
+<li>当self.size =20 (屏幕上放不下20条数据)时, 两次连续下拉会直接退出程序;</li>
+<li>xcode 调试日志:</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// 神奇的xcode, demo版本竟然有日志!!!</div><div class="line">TableViewRefresh[19031:6567158] RefreshStatePulled</div><div class="line">TableViewRefresh[19031:6567158]  -[ViewController refresh] </div><div class="line">TableViewRefresh[19031:6567158] *** Terminating app due to uncaught exception &apos;NSRangeException&apos;, reason: &apos;*** -[__NSArrayM objectAtIndex:]: index 13 beyond bounds for empty array&apos;</div></pre></td></tr></table></figure>
+<h4 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h4><p>从上面的日志中我们看出, 在刷新的时候报错了. 并且是数据越界的错误;</p>
+<p>猜想可能是由于刷新过程中要清空原来的数据,于是乎就在访问网络(模拟延迟操作)之前将数据给清空了, 这样一来两次下拉刷新连续操作的时候. 第一次操作完成之后 reloadData, 刷新界面, 此时又清空了数据, 导致数组越界.</p>
+<h4 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h4><ol>
+<li>在refresh(下拉刷新) 的时候标记一下;</li>
+<li>去掉访问网络之前的清空数据操作, 改到结果获取之后;</li>
+<li>结果获取之后,根据1中标记判断是否清理元数据;</li>
+<li>为了防止两次刷新只清空一次数据的问题, 在网络请求之前做标记, 判断是否正在请求, 如果请求则直接返回,否则继续;</li>
+<li>解决后代码略, 可以根据1-4 再修改</li>
+</ol>
+<h4 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h4><p>在写这篇文章过程中,发现了个更通用的下拉刷新,上滑加载的解决方案: <a href="https://github.com/CoderMJLee/MJRefresh" target="_blank" rel="external">MJRefresh</a><br>…</p>
+
+        </div>
+      </article>
+    </div>
+    <!-- Comments -->
+    <div class="container">
+      
+<section id="comment">
+  <!-- <h1 class="title">Comments</h1> -->
+
+  
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-ios-refresh-crash" data-title="ios 列表下拉刷新崩溃问题现象及解决" data-url="https://talkfiled.github.io./2017/03/27/ios-refresh-crash/"></div>
+    <!-- 多说评论框 end -->
+  
+</section>
+
+
+    </div>
+    <!-- Pre or Next -->
+    <div class="nav-links">
+      
+      
+        <div class="nav-next">
+          <a href="/2017/03/23/ios-oc/" rel="prev">Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
+        </div>
+      
+    </div>
+
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <!-- Footer-widgets -->
+<div class="footer-widgets">
+  <div class="row inside-wrapper">
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">关于本站</h1>
+        <div class="custom-widget-content">
+          
+          talk田 的博客分享
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Contact</h1>
+        <div class="widget-text">
+          
+            
+              <a href="https://github.com/talkfiled" class="icon icon-github" target="_blank">github</a>
+            
+              <a href="mailto:fogbj2012@gmail.com" class="icon icon-mail" target="_blank">mail</a>
+            
+          
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Search</h1>
+        <div class="widget-text">
+          <form onSubmit="return appDaily.submitSearch('')">
+            <p>
+              <input type="text" placeholder="search..." id="homeSearchInput">
+            </p>
+            <!-- <input type="submit" value="GO"> -->
+          </form>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>talk 田 &copy; 2017</span>
+    
+      <span class="split">|</span>
+      <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> with Theme <a href="https://github.com/GallenHu/hexo-theme-Daily" target="_blank">Daily</a></span>
+    
+  </p>
+</footer>
+
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'talk'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+    <!-- 多说公共JS代码 end -->
+
+
+
+</body>
+
+</html>
