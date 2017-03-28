@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!--Description-->
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="talk 田">
+  
+
+  <!--Open Graph Title-->
+  
+      <meta property="og:title" content="Masonry Readme中文版"/>
+  
+  <!--Open Graph Description-->
+  
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="talk 田"/>
+  <!--Type page-->
+  
+      <meta property="og:type" content="article" />
+  
+  <!--Page Cover-->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Title -->
+  
+  <title>Masonry Readme中文版 - talk 田</title>
+
+
+  <link rel="shortcut icon" href="https://hexo.io/icon/favicon-96x96.png">
+
+  <!-- Custom CSS/Sass -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!----------------------------
+  https://github.com/GallenHu/hexo-theme-Daily
+
+ _____            _   _
+|  __ \          (_) | |
+| |  | |   __ _   _  | |  _   _
+| |  | |  / _` | | | | | | | | |
+| |__| | | (_| | | | | | | |_| |
+|_____/   \__,_| |_| |_|  \__, |
+                          __/ |
+                         |___/
+
+    --------------------------->
+
+</head>
+
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="https://hexo.io/logo.svg" alt="talk 田" height="60">
+        
+      </a>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  home
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  archive
+                
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            Masonry Readme中文版
+            
+          </h1>
+          <p class="posted-on">
+          2017-03-28
+          </p>
+          <div class="tags-links">
+            
+              
+                <a href="/tags/翻译, masonry/" rel="tag">
+                  翻译, masonry
+                </a>
+              
+            
+          </div>
+        </div>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <p>看了几篇关于Masonry的文章和教程, 看到所有人都对Masonry推崇备至, 于是乎将源码下载下来仔细研读.</p>
+<p>本文是对其Readme的翻译,基本方式是在其原文后补上中文翻译</p>
+<p>#Masonry </p>
+<p><strong>Masonry is still actively maintained, we are committed to fixing bugs and merging good quality PRs from the wider community. However if you’re using Swift in your project, we recommend using <a href="https://github.com/SnapKit/SnapKit" target="_blank" rel="external">SnapKit</a> as it provides better type safety with a simpler API.</strong></p>
+<p><strong>该项目仍处于维护阶段, 我们会更新发现的bug和广大用户的优质提交. 如果你在使用swift语言, 我们建议你使用SnapKit.</strong></p>
+<p>Masonry is a light-weight layout framework which wraps AutoLayout with a nicer syntax. Masonry has its own layout DSL which provides a chainable way of describing your NSLayoutConstraints which results in layout code that is more concise and readable.<br>Masonry 是一个轻量级布局框架, 该框架基于AutoLayout 并且提供一个更友好的链式语法来描述 约束(NSLayoutConstraints).</p>
+<p>Masonry supports iOS and Mac OS X.<br>Masonry 支持iOS开发和 Mac OS X开发.</p>
+<p>For examples take a look at the <strong>Masonry iOS Examples</strong> project in the Masonry workspace. You will need to run <code>pod install</code> after downloading.<br>你可以通过项目中<strong>Masonry iOS Examples</strong> 部分代码查看示例. 项目是通过cocoa pod 管理的,下载完成之后需要运行pod install.</p>
+<h2 id="What’s-wrong-with-NSLayoutConstraints"><a href="#What’s-wrong-with-NSLayoutConstraints" class="headerlink" title="What’s wrong with NSLayoutConstraints?"></a>What’s wrong with NSLayoutConstraints?</h2><h2 id="为什么要用Masonry-直译为-NSLayoutConstraints-怎么了"><a href="#为什么要用Masonry-直译为-NSLayoutConstraints-怎么了" class="headerlink" title="为什么要用Masonry! (直译为: NSLayoutConstraints 怎么了?)"></a>为什么要用Masonry! (直译为: NSLayoutConstraints 怎么了?)</h2><p>Under the hood Auto Layout is a powerful and flexible way of organising and laying out your views. However creating constraints from code is verbose and not very descriptive.</p>
+<p>自动布局(Auto Layout) 是一个强大且灵活的管理和布局视图(view)的工具. 但是, 通过在代码中创建约束的方式使用时很麻烦的.</p>
+<p>Imagine a simple example in which you want to have a view fill its superview but inset by 10 pixels on every side<br>加入你有这么个需求: 将一个视图view 的边距设置为距其父视图 10像素, 使用 约束代码如下:<br><figure class="highlight obj-c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">UIView</span> *superview = <span class="keyword">self</span>.view;</div><div class="line"></div><div class="line"><span class="built_in">UIView</span> *view1 = [[<span class="built_in">UIView</span> alloc] init];</div><div class="line">view1.translatesAutoresizingMaskIntoConstraints = <span class="literal">NO</span>;</div><div class="line">view1.backgroundColor = [<span class="built_in">UIColor</span> greenColor];</div><div class="line">[superview addSubview:view1];</div><div class="line"></div><div class="line"><span class="built_in">UIEdgeInsets</span> padding = <span class="built_in">UIEdgeInsetsMake</span>(<span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>);</div><div class="line"></div><div class="line">[superview addConstraints:@[</div><div class="line"></div><div class="line">    <span class="comment">//view1 constraints</span></div><div class="line">    <span class="comment">// view1 约束</span></div><div class="line">    [<span class="built_in">NSLayoutConstraint</span> constraintWithItem:view1</div><div class="line">                                 attribute:<span class="built_in">NSLayoutAttributeTop</span></div><div class="line">                                 relatedBy:<span class="built_in">NSLayoutRelationEqual</span></div><div class="line">                                    toItem:superview</div><div class="line">                                 attribute:<span class="built_in">NSLayoutAttributeTop</span></div><div class="line">                                multiplier:<span class="number">1.0</span></div><div class="line">                                  constant:padding.top],</div><div class="line"></div><div class="line">    [<span class="built_in">NSLayoutConstraint</span> constraintWithItem:view1</div><div class="line">                                 attribute:<span class="built_in">NSLayoutAttributeLeft</span></div><div class="line">                                 relatedBy:<span class="built_in">NSLayoutRelationEqual</span></div><div class="line">                                    toItem:superview</div><div class="line">                                 attribute:<span class="built_in">NSLayoutAttributeLeft</span></div><div class="line">                                multiplier:<span class="number">1.0</span></div><div class="line">                                  constant:padding.left],</div><div class="line"></div><div class="line">    [<span class="built_in">NSLayoutConstraint</span> constraintWithItem:view1</div><div class="line">                                 attribute:<span class="built_in">NSLayoutAttributeBottom</span></div><div class="line">                                 relatedBy:<span class="built_in">NSLayoutRelationEqual</span></div><div class="line">                                    toItem:superview</div><div class="line">                                 attribute:<span class="built_in">NSLayoutAttributeBottom</span></div><div class="line">                                multiplier:<span class="number">1.0</span></div><div class="line">                                  constant:-padding.bottom],</div><div class="line"></div><div class="line">    [<span class="built_in">NSLayoutConstraint</span> constraintWithItem:view1</div><div class="line">                                 attribute:<span class="built_in">NSLayoutAttributeRight</span></div><div class="line">                                 relatedBy:<span class="built_in">NSLayoutRelationEqual</span></div><div class="line">                                    toItem:superview</div><div class="line">                                 attribute:<span class="built_in">NSLayoutAttributeRight</span></div><div class="line">                                multiplier:<span class="number">1</span></div><div class="line">                                  constant:-padding.right],</div><div class="line"></div><div class="line"> ]];</div></pre></td></tr></table></figure></p>
+<p>Even with such a simple example the code needed is quite verbose and quickly becomes unreadable when you have more than 2 or 3 views.<br>即使是实现这么一个简单需求都会变得如此复杂, 如果视图个数超过2 个或3个, 整个代码将成为天书.</p>
+<p>Another option is to use Visual Format Language (VFL), which is a bit less long winded.<br>当然你可以使用可视化编辑语言(应该指的是使用 storyboard / xib )简化代码.</p>
+<p>However the ASCII type syntax has its own pitfalls and its also a bit harder to animate as <code>NSLayoutConstraint constraintsWithVisualFormat:</code> returns an array.<br>不论如何, 原始的 ASCII语义结构(ASCII type syntax)的语法是有缺陷的, 并且很难实现使用可视化语言让 <code>NSLayoutconstraint constraintsWithVisualForat:</code>返回一个数组. (不太理解, 可能我还不太懂 AutoLayout)</p>
+<h2 id="Prepare-to-meet-your-Maker"><a href="#Prepare-to-meet-your-Maker" class="headerlink" title="Prepare to meet your Maker!"></a>Prepare to meet your Maker!</h2><h2 id="准备使用Maker-即Masonry"><a href="#准备使用Maker-即Masonry" class="headerlink" title="准备使用Maker (即Masonry)!"></a>准备使用Maker (即Masonry)!</h2><p>Heres the same constraints created using MASConstraintMaker<br>如下是使用 Masonry实现之前例子的代码:<br><figure class="highlight obj-c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">UIEdgeInsets</span> padding = <span class="built_in">UIEdgeInsetsMake</span>(<span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>);</div><div class="line"></div><div class="line">[view1 mas_makeConstraints:^(MASConstraintMaker *make) &#123;</div><div class="line">    make.top.equalTo(superview.mas_top).with.offset(padding.top); <span class="comment">//with is an optional semantic filler</span></div><div class="line">    make.left.equalTo(superview.mas_left).with.offset(padding.left);</div><div class="line">    make.bottom.equalTo(superview.mas_bottom).with.offset(-padding.bottom);</div><div class="line">    make.right.equalTo(superview.mas_right).with.offset(-padding.right);</div><div class="line">&#125;];</div></pre></td></tr></table></figure></p>
+<p>Or even shorter<br>或者使用更少代码实现:</p>
+<figure class="highlight obj-c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[view1 mas_makeConstraints:^(MASConstraintMaker *make) &#123;</div><div class="line">    make.edges.equalTo(superview).with.insets(padding);</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
+<p>Also note in the first example we had to add the constraints to the superview <code>[superview addConstraints:...</code>.<br>Masonry however will automagically add constraints to the appropriate view.</p>
+<p>我们注意到在原始例子中需要使用<code>[superview addConstraints:...</code>将当前约束与其父view关联.<br>Masonry自动帮我们完成了这一调用.</p>
+<p>Masonry will also call <code>view1.translatesAutoresizingMaskIntoConstraints = NO;</code> for you.<br>同事, Masonry会为控件调用<code>view1.translatesAutoresizingMaskIntoConstraints = NO;</code>  方法. </p>
+<h2 id="Not-all-things-are-created-equal"><a href="#Not-all-things-are-created-equal" class="headerlink" title="Not all things are created equal"></a>Not all things are created equal</h2><h2 id="约束里不仅有等于"><a href="#约束里不仅有等于" class="headerlink" title="约束里不仅有等于"></a>约束里不仅有等于</h2><blockquote>
+<p><code>.equalTo</code> equivalent to <strong>NSLayoutRelationEqual</strong></p>
+<p><code>.lessThanOrEqualTo</code> equivalent to <strong>NSLayoutRelationLessThanOrEqual</strong></p>
+<p><code>.greaterThanOrEqualTo</code> equivalent to <strong>NSLayoutRelationGreaterThanOrEqual</strong><br>如上三个是masonry 和autolayout 中的等价关系.</p>
+</blockquote>
+<p>These three equality constraints accept one argument which can be any of the following:<br>如上三个约束设置接收如下的参数:</p>
+<h4 id="1-MASViewAttribute"><a href="#1-MASViewAttribute" class="headerlink" title="1. MASViewAttribute"></a>1. MASViewAttribute</h4><figure class="highlight obj-c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">make.centerX.lessThanOrEqualTo(view2.mas_left);</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>MASViewAttribute</th>
+<th>NSLayoutAttribute</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>view.mas_left</td>
+<td>NSLayoutAttributeLeft</td>
+</tr>
+<tr>
+<td>view.mas_right</td>
+<td>NSLayoutAttributeRight</td>
+</tr>
+<tr>
+<td>view.mas_top</td>
+<td>NSLayoutAttributeTop</td>
+</tr>
+<tr>
+<td>view.mas_bottom</td>
+<td>NSLayoutAttributeBottom</td>
+</tr>
+<tr>
+<td>view.mas_leading</td>
+<td>NSLayoutAttributeLeading</td>
+</tr>
+<tr>
+<td>view.mas_trailing</td>
+<td>NSLayoutAttributeTrailing</td>
+</tr>
+<tr>
+<td>view.mas_width</td>
+<td>NSLayoutAttributeWidth</td>
+</tr>
+<tr>
+<td>view.mas_height</td>
+<td>NSLayoutAttributeHeight</td>
+</tr>
+<tr>
+<td>view.mas_centerX</td>
+<td>NSLayoutAttributeCenterX</td>
+</tr>
+<tr>
+<td>view.mas_centerY</td>
+<td>NSLayoutAttributeCenterY</td>
+</tr>
+<tr>
+<td>view.mas_baseline</td>
+<td>NSLayoutAttributeBaseline</td>
+</tr>
+</tbody>
+</table>
+<h4 id="2-UIView-NSView"><a href="#2-UIView-NSView" class="headerlink" title="2. UIView/NSView"></a>2. UIView/NSView</h4><p>if you want view.left to be greater than or equal to label.left :<br>如果你想讲view.left设置为不小于label.left, 可以使用如下代码:<br><figure class="highlight obj-c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//these two constraints are exactly the same</span></div><div class="line"><span class="comment">// 两种方式均可</span></div><div class="line">make.left.greaterThanOrEqualTo(label);</div><div class="line">make.left.greaterThanOrEqualTo(label.mas_left);</div></pre></td></tr></table></figure></p>
+<h4 id="3-NSNumber"><a href="#3-NSNumber" class="headerlink" title="3. NSNumber"></a>3. NSNumber</h4><p>Auto Layout allows width and height to be set to constant values.<br>AutoLayout允许为宽高设置常量值.<br>if you want to set view to have a minimum and maximum width you could pass a number to the equality blocks:<br>如果你希望为一个view设置一个最小和最大宽度,可以使用如下方法:</p>
+<figure class="highlight obj-c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//width &gt;= 200 &amp;&amp; width &lt;= 400</span></div><div class="line">make.width.greaterThanOrEqualTo(@<span class="number">200</span>);</div><div class="line">make.width.lessThanOrEqualTo(@<span class="number">400</span>)</div></pre></td></tr></table></figure>
+<p>However Auto Layout does not allow alignment attributes such as left, right, centerY etc to be set to constant values.<br>So if you pass a NSNumber for these attributes Masonry will turn these into constraints relative to the view&rsquo;s superview ie:</p>
+<p>由于 AutoLayout不允许定位属性(例如: left, right, centerY等)设置为常量值. 因此如果你想为定位属性设置常量, Masonry会自动为你转换为相对于父控件的约束.<br><figure class="highlight obj-c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//creates view.left = view.superview.left + 10</span></div><div class="line">make.left.lessThanOrEqualTo(@<span class="number">10</span>)</div></pre></td></tr></table></figure></p>
+<p>Instead of using NSNumber, you can use primitives and structs to build your constraints, like so:<br>你可以使用NSNumber 或者基本数据类型来创建约束.<br><figure class="highlight obj-c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">make.top.mas_equalTo(<span class="number">42</span>);</div><div class="line">make.height.mas_equalTo(<span class="number">20</span>);</div><div class="line">make.size.mas_equalTo(<span class="built_in">CGSizeMake</span>(<span class="number">50</span>, <span class="number">100</span>));</div><div class="line">make.edges.mas_equalTo(<span class="built_in">UIEdgeInsetsMake</span>(<span class="number">10</span>, <span class="number">0</span>, <span class="number">10</span>, <span class="number">0</span>));</div><div class="line">make.left.mas_equalTo(view).mas_offset(<span class="built_in">UIEdgeInsetsMake</span>(<span class="number">10</span>, <span class="number">0</span>, <span class="number">10</span>, <span class="number">0</span>));</div></pre></td></tr></table></figure></p>
+<p>By default, macros which support <a href="https://en.wikipedia.org/wiki/Autoboxing#Autoboxing" target="_blank" rel="external">autoboxing</a> are prefixed with <code>mas_</code>. Unprefixed versions are available by defining <code>MAS_SHORTHAND_GLOBALS</code> before importing Masonry.</p>
+<p>默认情况下,为了兼容macros所有前缀加<code>mas_</code>, 在引入Masonry.h之前定义一个<code>MAS_SHORTHAND_GLOBALS</code>值可以去掉前缀.</p>
+<h4 id="4-NSArray"><a href="#4-NSArray" class="headerlink" title="4. NSArray"></a>4. NSArray</h4><p>An array of a mixture of any of the previous types<br>可以接收之前所有类型的一个混合数组.</p>
+<figure class="highlight obj-c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">make.height.equalTo(@[view1.mas_height, view2.mas_height]);</div><div class="line">make.height.equalTo(@[view1, view2]);</div><div class="line">make.left.equalTo(@[view1, @<span class="number">100</span>, view3.right]);</div><div class="line">`</div></pre></td></tr></table></figure>
+<h2 id="Learn-to-prioritize"><a href="#Learn-to-prioritize" class="headerlink" title="Learn to prioritize"></a>Learn to prioritize</h2><blockquote>
+<p><code>.priority</code> allows you to specify an exact priority</p>
+<p><code>.priorityHigh</code> equivalent to <strong>UILayoutPriorityDefaultHigh</strong></p>
+<p><code>.priorityMedium</code> is half way between high and low</p>
+<p><code>.priorityLow</code> equivalent to <strong>UILayoutPriorityDefaultLow</strong></p>
+</blockquote>
+<p>Priorities are can be tacked on to the end of a constraint chain like so:<br><figure class="highlight obj-c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">make.left.greaterThanOrEqualTo(label.mas_left).with.priorityLow();</div><div class="line"></div><div class="line">make.top.equalTo(label.mas_top).with.priority(<span class="number">600</span>);</div></pre></td></tr></table></figure></p>
+<h2 id="Composition-composition-composition"><a href="#Composition-composition-composition" class="headerlink" title="Composition, composition, composition"></a>Composition, composition, composition</h2><h2 id="组合才是王道"><a href="#组合才是王道" class="headerlink" title="组合才是王道!"></a>组合才是王道!</h2><p>Masonry also gives you a few convenience methods which create multiple constraints at the same time. These are called MASCompositeConstraints<br>通过使用MASCompositeConstraints, 你可以方便的构建一个多重的约束</p>
+<h4 id="edges-边距"><a href="#edges-边距" class="headerlink" title="edges 边距"></a>edges 边距</h4><figure class="highlight obj-c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// make top, left, bottom, right equal view2</span></div><div class="line">make.edges.equalTo(view2);</div><div class="line"></div><div class="line"><span class="comment">// make top = superview.top + 5, left = superview.left + 10,</span></div><div class="line"><span class="comment">//      bottom = superview.bottom - 15, right = superview.right - 20</span></div><div class="line">make.edges.equalTo(superview).insets(<span class="built_in">UIEdgeInsetsMake</span>(<span class="number">5</span>, <span class="number">10</span>, <span class="number">15</span>, <span class="number">20</span>))</div></pre></td></tr></table></figure>
+<h4 id="size-大小"><a href="#size-大小" class="headerlink" title="size 大小"></a>size 大小</h4><figure class="highlight obj-c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// make width and height greater than or equal to titleLabel</span></div><div class="line">make.size.greaterThanOrEqualTo(titleLabel)</div><div class="line"></div><div class="line"><span class="comment">// make width = superview.width + 100, height = superview.height - 50</span></div><div class="line">make.size.equalTo(superview).sizeOffset(<span class="built_in">CGSizeMake</span>(<span class="number">100</span>, <span class="number">-50</span>))</div></pre></td></tr></table></figure>
+<h4 id="center-中心"><a href="#center-中心" class="headerlink" title="center 中心"></a>center 中心</h4><figure class="highlight obj-c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// make centerX and centerY = button1</span></div><div class="line">make.center.equalTo(button1)</div><div class="line"></div><div class="line"><span class="comment">// make centerX = superview.centerX - 5, centerY = superview.centerY + 10</span></div><div class="line">make.center.equalTo(superview).centerOffset(<span class="built_in">CGPointMake</span>(<span class="number">-5</span>, <span class="number">10</span>))</div></pre></td></tr></table></figure>
+<p>You can chain view attributes for increased readability:<br>使用链式语法增加可读性:</p>
+<figure class="highlight obj-c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// All edges but the top should equal those of the superview</span></div><div class="line">make.left.right.and.bottom.equalTo(superview);</div><div class="line">make.top.equalTo(otherView);</div></pre></td></tr></table></figure>
+<h2 id="Hold-on-for-dear-life"><a href="#Hold-on-for-dear-life" class="headerlink" title="Hold on for dear life"></a>Hold on for dear life</h2><h2 id="珍爱生命-什么鬼标题"><a href="#珍爱生命-什么鬼标题" class="headerlink" title="珍爱生命(什么鬼标题)"></a>珍爱生命(什么鬼标题)</h2><p>Sometimes you need modify existing constraints in order to animate or remove/replace constraints.<br>In Masonry there are a few different approaches to updating constraints.<br>在Masonry中有如下几种修改选优约束的方法.</p>
+<h4 id="1-References-引用"><a href="#1-References-引用" class="headerlink" title="1. References 引用"></a>1. References 引用</h4><p>You can hold on to a reference of a particular constraint by assigning the result of a constraint make expression to a local variable or a class property.<br>You could also reference multiple constraints by storing them away in an array.</p>
+<p>通过一个引用, 直接调用uninstall 移除所有的约束.</p>
+<figure class="highlight obj-c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// in public/private interface</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) MASConstraint *topConstraint;</div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line"><span class="comment">// when making constraints</span></div><div class="line">[view1 mas_makeConstraints:^(MASConstraintMaker *make) &#123;</div><div class="line">    <span class="keyword">self</span>.topConstraint = make.top.equalTo(superview.mas_top).with.offset(padding.top);</div><div class="line">    make.left.equalTo(superview.mas_left).with.offset(padding.left);</div><div class="line">&#125;];</div><div class="line"></div><div class="line">...</div><div class="line"><span class="comment">// then later you can call</span></div><div class="line">[<span class="keyword">self</span>.topConstraint uninstall];</div></pre></td></tr></table></figure>
+<h4 id="2-mas-updateConstraints"><a href="#2-mas-updateConstraints" class="headerlink" title="2. mas_updateConstraints"></a>2. mas_updateConstraints</h4><p>Alternatively if you are only updating the constant value of the constraint you can use the convience method <code>mas_updateConstraints</code> instead of <code>mas_makeConstraints</code>n<br>通过使用<code>mas_updateConstraints</code>方法来更新约束.</p>
+<figure class="highlight obj-c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// this is Apple's recommended place for adding/updating constraints</span></div><div class="line"><span class="comment">// this method can get called multiple times in response to setNeedsUpdateConstraints</span></div><div class="line"><span class="comment">// which can be called by UIKit internally or in your code if you need to trigger an update to your constraints</span></div><div class="line">- (<span class="keyword">void</span>)updateConstraints &#123;</div><div class="line">    [<span class="keyword">self</span>.growingButton mas_updateConstraints:^(MASConstraintMaker *make) &#123;</div><div class="line">        make.center.equalTo(<span class="keyword">self</span>);</div><div class="line">        make.width.equalTo(@(<span class="keyword">self</span>.buttonSize.width)).priorityLow();</div><div class="line">        make.height.equalTo(@(<span class="keyword">self</span>.buttonSize.height)).priorityLow();</div><div class="line">        make.width.lessThanOrEqualTo(<span class="keyword">self</span>);</div><div class="line">        make.height.lessThanOrEqualTo(<span class="keyword">self</span>);</div><div class="line">    &#125;];</div><div class="line"></div><div class="line">    <span class="comment">//according to apple super should be called at end of method</span></div><div class="line">    [<span class="keyword">super</span> updateConstraints];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="3-mas-remakeConstraints"><a href="#3-mas-remakeConstraints" class="headerlink" title="3. mas_remakeConstraints"></a>3. mas_remakeConstraints</h3><p><code>mas_updateConstraints</code> is useful for updating a set of constraints, but doing anything beyond updating constant values can get exhausting. That’s where <code>mas_remakeConstraints</code> comes in.</p>
+<p>通过使用<code>mas_remakeConstraints</code>该实现.</p>
+<p><code>mas_remakeConstraints</code> is similar to <code>mas_updateConstraints</code>, but instead of updating constant values, it will remove all of its constraints before installing them again. This lets you provide different constraints without having to keep around references to ones which you want to remove.</p>
+<figure class="highlight obj-c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)changeButtonPosition &#123;</div><div class="line">    [<span class="keyword">self</span>.button mas_remakeConstraints:^(MASConstraintMaker *make) &#123;</div><div class="line">        make.size.equalTo(<span class="keyword">self</span>.buttonSize);</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (topLeft) &#123;</div><div class="line">        	make.top.and.left.offset(<span class="number">10</span>);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">        	make.bottom.and.right.offset(<span class="number">-10</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>You can find more detailed examples of all three approaches in the <strong>Masonry iOS Examples</strong> project.</p>
+<h2 id="When-the-amp-hits-the-fan"><a href="#When-the-amp-hits-the-fan" class="headerlink" title="When the ^&amp;*!@ hits the fan!"></a>When the ^&amp;*!@ hits the fan!</h2><h2 id="使日志输出更有意义"><a href="#使日志输出更有意义" class="headerlink" title="使日志输出更有意义!"></a>使日志输出更有意义!</h2><p>Laying out your views doesn’t always goto plan. So when things literally go pear shaped, you don’t want to be looking at console output like this:</p>
+<figure class="highlight obj-c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Unable to simultaneously satisfy constraints.....blah blah blah....</div><div class="line">(</div><div class="line">    <span class="string">"&lt;NSLayoutConstraint:0x7189ac0 V:[UILabel:0x7186980(&gt;=5000)]&gt;"</span>,</div><div class="line">    <span class="string">"&lt;NSAutoresizingMaskLayoutConstraint:0x839ea20 h=--&amp; v=--&amp; V:[MASExampleDebuggingView:0x7186560(416)]&gt;"</span>,</div><div class="line">    <span class="string">"&lt;NSLayoutConstraint:0x7189c70 UILabel:0x7186980.bottom == MASExampleDebuggingView:0x7186560.bottom - 10&gt;"</span>,</div><div class="line">    <span class="string">"&lt;NSLayoutConstraint:0x7189560 V:|-(1)-[UILabel:0x7186980]   (Names: '|':MASExampleDebuggingView:0x7186560 )&gt;"</span></div><div class="line">)</div><div class="line"></div><div class="line">Will attempt to recover by breaking constraint</div><div class="line">&lt;<span class="built_in">NSLayoutConstraint</span>:<span class="number">0x7189ac0</span> V:[<span class="built_in">UILabel</span>:<span class="number">0x7186980</span>(&gt;=<span class="number">5000</span>)]&gt;</div></pre></td></tr></table></figure>
+<p>Masonry adds a category to NSLayoutConstraint which overrides the default implementation of <code>- (NSString *)description</code>.<br>Now you can give meaningful names to views and constraints, and also easily pick out the constraints created by Masonry.</p>
+<p>which means your console output can now look like this:</p>
+<figure class="highlight obj-c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Unable to simultaneously satisfy constraints......blah blah blah....</div><div class="line">(</div><div class="line">    <span class="string">"&lt;NSAutoresizingMaskLayoutConstraint:0x8887740 MASExampleDebuggingView:superview.height == 416&gt;"</span>,</div><div class="line">    <span class="string">"&lt;MASLayoutConstraint:ConstantConstraint UILabel:messageLabel.height &gt;= 5000&gt;"</span>,</div><div class="line">    <span class="string">"&lt;MASLayoutConstraint:BottomConstraint UILabel:messageLabel.bottom == MASExampleDebuggingView:superview.bottom - 10&gt;"</span>,</div><div class="line">    <span class="string">"&lt;MASLayoutConstraint:ConflictingConstraint[0] UILabel:messageLabel.top == MASExampleDebuggingView:superview.top + 1&gt;"</span></div><div class="line">)</div><div class="line"></div><div class="line">Will attempt to recover by breaking constraint</div><div class="line">&lt;MASLayoutConstraint:ConstantConstraint <span class="built_in">UILabel</span>:messageLabel.height &gt;= <span class="number">5000</span>&gt;</div></pre></td></tr></table></figure>
+<p>For an example of how to set this up take a look at the <strong>Masonry iOS Examples</strong> project in the Masonry workspace.</p>
+<h2 id="Where-should-I-create-my-constraints"><a href="#Where-should-I-create-my-constraints" class="headerlink" title="Where should I create my constraints?"></a>Where should I create my constraints?</h2><h2 id="应该在哪里创建约束"><a href="#应该在哪里创建约束" class="headerlink" title="应该在哪里创建约束?"></a>应该在哪里创建约束?</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">DIYCustomView</span></span></div><div class="line"></div><div class="line">- (<span class="keyword">id</span>)init &#123;</div><div class="line">    <span class="keyword">self</span> = [<span class="keyword">super</span> init];</div><div class="line">    <span class="keyword">if</span> (!<span class="keyword">self</span>) <span class="keyword">return</span> <span class="literal">nil</span>;</div><div class="line"></div><div class="line">    <span class="comment">// --- Create your views here ---</span></div><div class="line">    <span class="keyword">self</span>.button = [[<span class="built_in">UIButton</span> alloc] init];</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// tell UIKit that you are using AutoLayout</span></div><div class="line">+ (<span class="built_in">BOOL</span>)requiresConstraintBasedLayout &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// this is Apple's recommended place for adding/updating constraints</span></div><div class="line"><span class="comment">// 苹果推荐!!</span></div><div class="line">- (<span class="keyword">void</span>)updateConstraints &#123;</div><div class="line"></div><div class="line">    <span class="comment">// --- remake/update constraints here</span></div><div class="line">    [<span class="keyword">self</span>.button remakeConstraints:^(MASConstraintMaker *make) &#123;</div><div class="line">        make.width.equalTo(@(<span class="keyword">self</span>.buttonSize.width));</div><div class="line">        make.height.equalTo(@(<span class="keyword">self</span>.buttonSize.height));</div><div class="line">    &#125;];</div><div class="line">    </div><div class="line">    <span class="comment">//according to apple super should be called at end of method</span></div><div class="line">    [<span class="keyword">super</span> updateConstraints];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)didTapButton:(<span class="built_in">UIButton</span> *)button &#123;</div><div class="line">    <span class="comment">// --- Do your changes ie change variables that affect your layout etc ---</span></div><div class="line">    <span class="keyword">self</span>.buttonSize = <span class="built_in">CGSize</span>(<span class="number">200</span>, <span class="number">200</span>);</div><div class="line"></div><div class="line">    <span class="comment">// tell constraints they need updating</span></div><div class="line">    <span class="comment">// 通知约束改变!</span></div><div class="line">    [<span class="keyword">self</span> setNeedsUpdateConstraints];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<h2 id="Installation-使用"><a href="#Installation-使用" class="headerlink" title="Installation 使用"></a>Installation 使用</h2><p>Use the <a href="http://www.youtube.com/watch?v=YaIZF8uUTtk" target="_blank" rel="external">orsome</a> <a href="http://github.com/CocoaPods/CocoaPods" target="_blank" rel="external">CocoaPods</a>.</p>
+<p>In your Podfile</p>
+<blockquote>
+<p><code>pod &#39;Masonry&#39;</code></p>
+</blockquote>
+<p>If you want to use masonry without all those pesky ‘mas_’ prefixes. Add #define MAS_SHORTHAND to your prefix.pch before importing Masonry</p>
+<blockquote>
+<p><code>#define MAS_SHORTHAND</code></p>
+</blockquote>
+<p>Get busy Masoning</p>
+<blockquote>
+<p><code>#import &quot;Masonry.h&quot;</code></p>
+</blockquote>
+<h2 id="Code-Snippets"><a href="#Code-Snippets" class="headerlink" title="Code Snippets"></a>Code Snippets</h2><p>Copy the included code snippets to <code>~/Library/Developer/Xcode/UserData/CodeSnippets</code> to write your masonry blocks at lightning speed!</p>
+<p><code>mas_make</code> -&gt; <code>[&lt;view&gt; mas_makeConstraints:^(MASConstraintMaker *make){&lt;code&gt;}];</code></p>
+<p><code>mas_update</code> -&gt; <code>[&lt;view&gt; mas_updateConstraints:^(MASConstraintMaker *make){&lt;code&gt;}];</code></p>
+<p><code>mas_remake</code> -&gt; <code>[&lt;view&gt; mas_remakeConstraints:^(MASConstraintMaker *make){&lt;code&gt;}];</code></p>
+<h2 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h2><ul>
+<li>Not limited to subset of Auto Layout. Anything NSLayoutConstraint can do, Masonry can do too!</li>
+<li>Great debug support, give your views and constraints meaningful names.</li>
+<li>Constraints read like sentences.</li>
+<li>No crazy macro magic. Masonry won’t pollute the global namespace with macros.</li>
+<li>Not string or dictionary based and hence you get compile time checking.</li>
+</ul>
+<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><ul>
+<li>Eye candy 六六六</li>
+<li>Mac example project</li>
+<li>More tests and examples</li>
+</ul>
+
+        </div>
+      </article>
+    </div>
+    <!-- Comments -->
+    <div class="container">
+      
+<section id="comment">
+  <!-- <h1 class="title">Comments</h1> -->
+
+  
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-Masonry-Readme-in-ZH" data-title="Masonry Readme中文版" data-url="https://talkfiled.github.io./2017/03/28/Masonry-Readme-in-ZH/"></div>
+    <!-- 多说评论框 end -->
+  
+</section>
+
+
+    </div>
+    <!-- Pre or Next -->
+    <div class="nav-links">
+      
+      
+        <div class="nav-next">
+          <a href="/2017/03/27/ios-refresh-crash/" rel="prev">Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
+        </div>
+      
+    </div>
+
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <!-- Footer-widgets -->
+<div class="footer-widgets">
+  <div class="row inside-wrapper">
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">关于本站</h1>
+        <div class="custom-widget-content">
+          
+          talk田 的博客分享
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Contact</h1>
+        <div class="widget-text">
+          
+            
+              <a href="https://github.com/talkfiled" class="icon icon-github" target="_blank">github</a>
+            
+              <a href="mailto:fogbj2012@gmail.com" class="icon icon-mail" target="_blank">mail</a>
+            
+          
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Search</h1>
+        <div class="widget-text">
+          <form onSubmit="return appDaily.submitSearch('')">
+            <p>
+              <input type="text" placeholder="search..." id="homeSearchInput">
+            </p>
+            <!-- <input type="submit" value="GO"> -->
+          </form>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>talk 田 &copy; 2017</span>
+    
+      <span class="split">|</span>
+      <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> with Theme <a href="https://github.com/GallenHu/hexo-theme-Daily" target="_blank">Daily</a></span>
+    
+  </p>
+</footer>
+
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'talk'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+    <!-- 多说公共JS代码 end -->
+
+
+
+</body>
+
+</html>
