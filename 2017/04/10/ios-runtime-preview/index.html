@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!--Description-->
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="talk 田">
+  
+
+  <!--Open Graph Title-->
+  
+      <meta property="og:title" content="一些IOS知识点"/>
+  
+  <!--Open Graph Description-->
+  
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="talk 田"/>
+  <!--Type page-->
+  
+      <meta property="og:type" content="article" />
+  
+  <!--Page Cover-->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Title -->
+  
+  <title>一些IOS知识点 - talk 田</title>
+
+
+  <link rel="shortcut icon" href="https://hexo.io/icon/favicon-96x96.png">
+
+  <!-- Custom CSS/Sass -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!----------------------------
+  https://github.com/GallenHu/hexo-theme-Daily
+
+ _____            _   _
+|  __ \          (_) | |
+| |  | |   __ _   _  | |  _   _
+| |  | |  / _` | | | | | | | | |
+| |__| | | (_| | | | | | | |_| |
+|_____/   \__,_| |_| |_|  \__, |
+                          __/ |
+                         |___/
+
+    --------------------------->
+
+</head>
+
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="https://hexo.io/logo.svg" alt="talk 田" height="60">
+        
+      </a>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  home
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  archive
+                
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            一些IOS知识点
+            
+          </h1>
+          <p class="posted-on">
+          2017-04-10
+          </p>
+          <div class="tags-links">
+            
+              
+                <a href="/tags/ios知识点/" rel="tag">
+                  ios知识点
+                </a>
+              
+            
+          </div>
+        </div>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <p>const: 仅用来修饰右边的变量;<br>static和extern简单使用(要使用一个东西，先了解其作用)<br><code>static作用</code> :</p>
+<pre><code> * 修饰局部变量
+     1.延长局部变量的生命周期,程序结束才会销毁。
+    2.局部变量只会生成一份内存,只会初始化一次。 
+    3.改变局部变量的作用域。
+
+* 修饰全局变量
+     1.只能在本文件中访问,修改全局变量的作用域,生命周期不会改
+    2.避免重复定义全局变量
+</code></pre><p><code>extern作用</code>:<br>    只是用来获取全局变量(包括全局静态变量)的值，不能用于定义变量</p>
+<p>==诌:<br>1) const, static, extern 只是在编译阶段有用的,方便开发人员理解的关键字;<br>2) 对于编译器来说,只是将你源代码里声明的这个变量放到栈空间还是堆空间,以及分不分配内存和副本;==</p>
+<p>IOS9 新特性 关键词:<br>新出的关键字:<code>nonnull</code>, <code>nullable</code>, <code>null_resettable</code>, <code>_Null_unspecified</code>, 用于修饰属性,方法的参数，方法返回值,规范开发。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">	* nonnull:表示属性不能为空,non：非，null：空</div><div class="line">    方式一:</div><div class="line">    @property (nonatomic, strong, nonnull) NSString *name;</div><div class="line">    方式二:</div><div class="line">    @property (nonatomic, strong) NSString * _Nonnull name;</div><div class="line">    方式三:</div><div class="line">    @property (nonatomic, strong) NSString * __nonnull name;</div><div class="line"> </div><div class="line">    在NS_ASSUME_NONNULL_BEGIN与NS_ASSUME_NONNULL_END之间所有的对象属性，方法参数，方法返回值，默认都是nonnull。</div><div class="line"> </div><div class="line">     NS_ASSUME_NONNULL_BEGIN</div><div class="line">     </div><div class="line">     @property (nonatomic, strong) NSString *name;</div><div class="line">     </div><div class="line">     NS_ASSUME_NONNULL_END</div><div class="line">     </div><div class="line">     </div><div class="line">	* nullable：可以为nil</div><div class="line">     方式一:</div><div class="line">     @property (nonatomic, strong, nullable) NSString *name;</div><div class="line">     方式二:</div><div class="line">     @property (nonatomic, strong) NSString * _Nullable name;</div><div class="line">     方式三:</div><div class="line">     @property (nonatomic, strong) NSString * __nullable name;</div><div class="line"></div><div class="line"></div><div class="line">	* null_resettable:可以重新设置空,set方法可以为空，get不能为空。</div><div class="line">     @property (nonatomic, strong, null_resettable) NSString *name;</div><div class="line">     注意：用null_resettable属性，必须重写set,或者get方法，处理传值为nil的情况，可以模仿控制器view的get方法，当view为nil，就自己创建一个.</div><div class="line">     e.g.</div><div class="line">- (NSString *)text</div><div class="line">&#123;</div><div class="line">    if (_text == nil) &#123;</div><div class="line">        _text = @&quot;我不能为空&quot;;</div><div class="line">    &#125;</div><div class="line">    return _text;</div><div class="line">&#125;</div><div class="line">    </div><div class="line">    * _Null_unspecified：不确定是否为空.</div><div class="line">    @property (nonatomic, strong) NSString * _Null_unspecified name;</div></pre></td></tr></table></figure></p>
+<p>泛型: 限制类型<br>使用场景有两个</p>
+<ul>
+<li><p>在集合中使用泛型:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">NSMutableArray&lt;NSString *&gt; *datas</div><div class="line">// datas 中将只能添加NSString * 类型(NSString 对象的指针);</div></pre></td></tr></table></figure>
+</li>
+<li><p>声明一个类时, 类里面的某些属性的类型不确定时使用:</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// 声明 Person</div><div class="line">@interface Person&lt;ObjectType&gt; : NSObject</div><div class="line">@property (nonatomic)  ObjectType car;</div><div class="line"></div><div class="line">// Car</div><div class="line">Person&lt;Car *&gt; *p = [[Person alloc] init];</div><div class="line">// BMWCar Car 的子类</div><div class="line">Person&lt;BMWCar *&gt; *pbmw = [[Person alloc] init];</div></pre></td></tr></table></figure>
+<p><code>p = pbmw</code> 时会提示警告, 使用<code>__covariant</code>来约束Person 的ObjectType, 可以忽略警告!<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@interface Person&lt;__covariant ObjectType&gt; : NSObject</div></pre></td></tr></table></figure></p>
+<p>反之,使用<code>__contravariant</code> 类忽略警告<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">pbmw = p</div><div class="line"></div><div class="line">@interface Person&lt;__contravariant ObjectType&gt; : NSObject</div></pre></td></tr></table></figure></p>
+<p><code>__kindof</code> 关键字, 用于表示当前类或其子类:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">+ (__kindof Person *)person;</div><div class="line">// 该方法返回 一个Person类,或者Pesron的子类</div></pre></td></tr></table></figure>
+<h3 id="runtime-浅析"><a href="#runtime-浅析" class="headerlink" title="runtime 浅析"></a>runtime 浅析</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">The Objective-C language defers as many decisions as it can from compile time and link time to runtime. Whenever possible, it does things dynamically.  </div><div class="line"></div><div class="line">Objc 是动态运行的语言, 自己的行为不编译和连接阶段决定的, 而是运行阶段确定的.</div></pre></td></tr></table></figure>
+<p>上面一段话来至<a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048-CH1-SW1" target="_blank" rel="external">objc-runtime</a>. 单独看翻译也看不出个所以然, 大概说说我自己的理解:<br>Objc 语言并不是直接运行在x86 /arm 机器上的, 而是在一个 objc-runtime 库的基础上运行的. 这个库更像一个操作系统(也许可以理解为虚拟机)来执行 objc编写的源代码编译和链接后的可执行文件.</p>
+<p>因此, 对于objc 来说没有必要遵循c语言的规范, 卡伊根据运行时库的功能和编译器的功能来实现很多自己的特性, 这也许是 所谓runtime存在的根本原因;</p>
+<p>1) 消息机制<br>objc 运行时最主要的机制是消息机制, 编译器会将代码中<code>[receiver message]</code> 的语句转换为<code>objc_msgSend(receiver, selector)</code>, 跟c语言编译相比, 一个不会转换为一个直接的地址, 而是一个selector对象, 在运行时通过objc_msgSend绑定(消息机制).</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">#import &lt;objc/message.h&gt;</div><div class="line">	// 创建person对象</div><div class="line">    Person *p = [[Person alloc] init];</div><div class="line">    </div><div class="line">    // 调用对象方法</div><div class="line">    [p eat];</div><div class="line">    </div><div class="line">    // 本质：让对象发送消息</div><div class="line">    objc_msgSend(p, @selector(eat));</div><div class="line"></div><div class="line">    // 调用类方法的方式：两种</div><div class="line">    // 第一种通过类名调用</div><div class="line">    [Person eat];</div><div class="line">    // 第二种通过类对象调用</div><div class="line">    [[Person class] eat];</div><div class="line">    </div><div class="line">    // 用类名调用类方法，底层会自动把类名转换成类对象调用</div><div class="line">    // 本质：让类对象发送消息</div><div class="line">    objc_msgSend([Person class], @selector(eat));</div></pre></td></tr></table></figure>
+<p>2) 交换方法<br>当系统/类库中功能不完善时,可以使用如下两种方式扩展功能:</p>
+<ul>
+<li>1 继承并重写方法; 例子略</li>
+<li>2 使用runtime,交换方法;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line">@implementation ViewController</div><div class="line"></div><div class="line"></div><div class="line">- (void)viewDidLoad &#123;</div><div class="line">    [super viewDidLoad];</div><div class="line">    // Do any additional setup after loading the view, typically from a nib.</div><div class="line">    // 需求：给imageNamed方法提供功能，每次加载图片就判断下图片是否加载成功。</div><div class="line">    // 步骤一：先搞个分类，定义一个能加载图片并且能打印的方法+ (instancetype)imageWithName:(NSString *)name;</div><div class="line">    // 步骤二：交换imageNamed和imageWithName的实现，就能调用imageWithName，间接调用imageWithName的实现。</div><div class="line">    UIImage *image = [UIImage imageNamed:@&quot;123&quot;];</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line">@end</div><div class="line"></div><div class="line"></div><div class="line">@implementation UIImage (Image)</div><div class="line">// 加载分类到内存的时候调用</div><div class="line">+ (void)load</div><div class="line">&#123;</div><div class="line">    // 交换方法</div><div class="line">    </div><div class="line">    // 获取imageWithName方法地址</div><div class="line">    Method imageWithName = class_getClassMethod(self, @selector(imageWithName:));</div><div class="line">    </div><div class="line">    // 获取imageWithName方法地址</div><div class="line">    Method imageName = class_getClassMethod(self, @selector(imageNamed:));</div><div class="line"></div><div class="line">    // 交换方法地址，相当于交换实现方式</div><div class="line">    method_exchangeImplementations(imageWithName, imageName);</div><div class="line">    </div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line">// 不能在分类中重写系统方法imageNamed，因为会把系统的功能给覆盖掉，而且分类中不能调用super.</div><div class="line"></div><div class="line">// 既能加载图片又能打印</div><div class="line">+ (instancetype)imageWithName:(NSString *)name</div><div class="line">&#123;</div><div class="line">   </div><div class="line">    // 这里调用imageWithName，相当于调用imageName</div><div class="line">    UIImage *image = [self imageWithName:name];</div><div class="line">    // 调用原来的方法, 因为之前load过程中已经交换了imageWithName和imageNamed方法, 这里如果 UIImage *image = [self imageNamed:name] 会陷入死循环</div><div class="line">    </div><div class="line">    if (image == nil) &#123;</div><div class="line">        NSLog(@&quot;加载空的图片&quot;);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    return image;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>3) 动态添加方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">@implementation ViewController</div><div class="line"></div><div class="line">- (void)viewDidLoad &#123;</div><div class="line">    [super viewDidLoad];</div><div class="line">    // Do any additional setup after loading the view, typically from a nib.</div><div class="line">    </div><div class="line">    Person *p = [[Person alloc] init];</div><div class="line">    </div><div class="line">    // 默认person，没有实现eat方法，可以通过performSelector调用，但是会报错。</div><div class="line">    // 动态添加方法就不会报错</div><div class="line">    [p performSelector:@selector(eat)];</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">@end</div><div class="line"></div><div class="line"></div><div class="line">@implementation Person</div><div class="line">// void(*)()</div><div class="line">// 默认方法都有两个隐式参数，</div><div class="line">void eat(id self,SEL sel)</div><div class="line">&#123;</div><div class="line">    NSLog(@&quot;%@ %@&quot;,self,NSStringFromSelector(sel));</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 当一个对象调用未实现的方法，会调用这个方法处理,并且会把对应的方法列表传过来.</div><div class="line">// 刚好可以用来判断，未实现的方法是不是我们想要动态添加的方法</div><div class="line">+ (BOOL)resolveInstanceMethod:(SEL)sel</div><div class="line">&#123;</div><div class="line">    </div><div class="line">    if (sel == @selector(eat)) &#123;</div><div class="line">        // 动态添加eat方法</div><div class="line">        </div><div class="line">        // 第一个参数：给哪个类添加方法</div><div class="line">        // 第二个参数：添加方法的方法编号</div><div class="line">        // 第三个参数：添加方法的函数实现（函数地址）</div><div class="line">        // 第四个参数：函数的类型，(返回值+参数类型) v:void @:对象-&gt;self :表示SEL-&gt;_cmd</div><div class="line">        class_addMethod(self, @selector(eat), eat, &quot;v@:&quot;);</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    return [super resolveInstanceMethod:sel];</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure></p>
+<p>4) 给分类添加属性<br>给这个类添加关联，并不是直接把这个值的内存空间添加到类存空间。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">@implementation ViewController</div><div class="line">- (void)viewDidLoad &#123;</div><div class="line">    [super viewDidLoad];</div><div class="line">    // Do any additional setup after loading the view, typically from a nib.</div><div class="line">    // 给系统NSObject类动态添加属性name</div><div class="line">    NSObject *objc = [[NSObject alloc] init];</div><div class="line">    objc.name = @&quot;小码哥&quot;;</div><div class="line">    NSLog(@&quot;%@&quot;,objc.name);</div><div class="line">&#125;</div><div class="line">@end</div><div class="line"></div><div class="line"></div><div class="line">// 定义关联的key</div><div class="line">static const char *key = &quot;name&quot;;</div><div class="line">@implementation NSObject (Property)</div><div class="line">- (NSString *)name</div><div class="line">&#123;</div><div class="line">    // 根据关联的key，获取关联的值。</div><div class="line">    return objc_getAssociatedObject(self, key);</div><div class="line">&#125;</div><div class="line">- (void)setName:(NSString *)name</div><div class="line">&#123;</div><div class="line">    // 第一个参数：给哪个对象添加关联</div><div class="line">    // 第二个参数：关联的key，通过这个key获取</div><div class="line">    // 第三个参数：关联的value</div><div class="line">    // 第四个参数:关联的策略</div><div class="line">    objc_setAssociatedObject(self, key, name, OBJC_ASSOCIATION_RETAIN_NONATOMIC);</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>5) 字典转模型</p>
+<ul>
+<li>字典转模型的方式一：KVC</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">@implementation Status</div><div class="line">+ (instancetype)statusWithDict:(NSDictionary *)dict</div><div class="line">&#123;</div><div class="line">    Status *status = [[self alloc] init]; </div><div class="line">    [status setValuesForKeysWithDictionary:dict];</div><div class="line">    return status;</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<ul>
+<li>KVC字典转模型弊端：必须保证，模型中的属性和字典中的key一一对应。<ul>
+<li>如果不一致，就会调用<code>[&lt;Status 0x7fa74b545d60&gt; setValue:forUndefinedKey:]</code><br>报<code>key</code>找不到的错。    </li>
+<li>分析:模型中的属性和字典的key不一一对应，系统就会调用<code>setValue:forUndefinedKey:</code>报错。</li>
+<li>解决:重写对象的<code>setValue:forUndefinedKey:</code>,把系统的方法覆盖，<br>就能继续使用KVC，字典转模型了。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">- (void)setValue:(id)value forUndefinedKey:(NSString *)key</div><div class="line">&#123;</div><div class="line">    if ([key isEqualToString:@&quot;id&quot;]) &#123;</div><div class="line">        _ID = [value integerValue];</div><div class="line">    &#125;</div><div class="line">    // key:没有找到key</div><div class="line">    // value:没有找到key对应的值</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>字典转模型的方式二：Runtime<ul>
+<li>思路：利用运行时，遍历模型中所有属性，根据模型的属性名，去字典中查找key，取出对应的值，给模型的属性赋值。</li>
+<li>步骤：提供一个NSObject分类，专门字典转模型，以后所有模型都可以通过这个分类转。<br>用到的运行时方法</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Ivar * class_copyIvarList(Class cls, unsigned int *outCount);</div><div class="line">返回cls对应类中的实体变量 (instance variables);</div><div class="line"></div><div class="line">typedef struct objc_ivar *Ivar; </div><div class="line"></div><div class="line">const char * ivar_getName(Ivar v);</div><div class="line"></div><div class="line">const char * ivar_getTypeEncoding(Ivar v);</div></pre></td></tr></table></figure>
+<p><a href="http://omoo8c568.bkt.clouddn.com/NSObject+Model.m" target="_blank" rel="external">案例代码</a></p>
+
+        </div>
+      </article>
+    </div>
+    <!-- Comments -->
+    <div class="container">
+      
+<section id="comment">
+  <!-- <h1 class="title">Comments</h1> -->
+
+  
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-ios-runtime-preview" data-title="一些IOS知识点" data-url="https://talkfiled.github.io./2017/04/10/ios-runtime-preview/"></div>
+    <!-- 多说评论框 end -->
+  
+</section>
+
+
+    </div>
+    <!-- Pre or Next -->
+    <div class="nav-links">
+      
+      
+        <div class="nav-next">
+          <a href="/2017/04/06/thread-ios/" rel="prev">Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
+        </div>
+      
+    </div>
+
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <!-- Footer-widgets -->
+<div class="footer-widgets">
+  <div class="row inside-wrapper">
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">关于本站</h1>
+        <div class="custom-widget-content">
+          
+          talk田 的博客分享
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Contact</h1>
+        <div class="widget-text">
+          
+            
+              <a href="https://github.com/talkfiled" class="icon icon-github" target="_blank">github</a>
+            
+              <a href="mailto:fogbj2012@gmail.com" class="icon icon-mail" target="_blank">mail</a>
+            
+          
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Search</h1>
+        <div class="widget-text">
+          <form onSubmit="return appDaily.submitSearch('')">
+            <p>
+              <input type="text" placeholder="search..." id="homeSearchInput">
+            </p>
+            <!-- <input type="submit" value="GO"> -->
+          </form>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>talk 田 &copy; 2017</span>
+    
+      <span class="split">|</span>
+      <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> with Theme <a href="https://github.com/GallenHu/hexo-theme-Daily" target="_blank">Daily</a></span>
+    
+  </p>
+</footer>
+
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'talk'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+    <!-- 多说公共JS代码 end -->
+
+
+
+</body>
+
+</html>
