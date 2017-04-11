@@ -154,6 +154,36 @@
 <p>unsafe_unretained ,不安全引用,一个不安全引用与弱关联之间的相同点在于，它们都不会保证相应对象的活动。但当目标对象被释放时，不安全引用不会被设置成 nil 。</p>
 <h4 id="copy-与深浅拷贝的诌"><a href="#copy-与深浅拷贝的诌" class="headerlink" title="copy 与深浅拷贝的诌"></a>copy 与深浅拷贝的诌</h4><p>obj-c中引用一般都是指针类型的,当初始话的对象在别的指针引用的情况向被修改了,初始化的新指针也会修改,有事我们不希望这些修改,就可以使用copy.</p>
 <p>深浅拷贝是最无聊的一组术语, 或者说都是不应该存在的术语, 关于拷贝问题,我们需要理清楚指针是什么, 对象是在哪里, 并且牢记所有代码都是计算机在运行过程中内存变化的体现,这样就可以了.</p>
+<h4 id="小点"><a href="#小点" class="headerlink" title="小点"></a>小点</h4><ul>
+<li>xcode设置和关闭自动布局:</li>
+</ul>
+<p><img src="http://omoo8c568.bkt.clouddn.com/20170410149179410186126.png" alt="20170410149179410186126.png"></p>
+<ul>
+<li><code>automaticallyAdjustsScrollViewInsets</code></li>
+</ul>
+<p>UIViewController的方法, 用于控制其内部的scrollview是否自动偏移;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@property(nonatomic, assign) BOOL automaticallyAdjustsScrollViewInsets;</div></pre></td></tr></table></figure>
+<ul>
+<li><code>showsHorizontalScrollIndicator</code></li>
+</ul>
+<p>UIScrollView的方法, 用于控制横向的滚动条</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@property(nonatomic) BOOL showsHorizontalScrollIndicator;</div></pre></td></tr></table></figure>
+<ul>
+<li><code>userInteractionEnabled</code></li>
+</ul>
+<p>UILabel, UIView, UIViewPropertyAnimator, SKNode, UIImageView 中均有声明, 用于控制是否接受用户输入;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@property(nonatomic, getter=isUserInteractionEnabled) BOOL userInteractionEnabled;</div></pre></td></tr></table></figure>
+<ul>
+<li><code>tag</code></li>
+</ul>
+<p>UIView 中声明的属性, 用于标示一个view</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@property(nonatomic) NSInteger tag;</div></pre></td></tr></table></figure>
+<p>在Android中View 也有个tag, 是Object对象的, 可以用来给view绑定一些数据, 比如说ListView 的Adapter中给每个ItemView绑定ViewHolder对象;在IOS里tag是整数类型, 可以通过<code>viewWithTag:</code>获取一个View;</p>
+<ul>
+<li><code>viewWithTag:</code></li>
+</ul>
+<p>UIView中声明的属性, 用于返回一个tag为指定值的view, 查找范围为当前view机器子view;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- (__kindof UIView *)viewWithTag:(NSInteger)tag;</div></pre></td></tr></table></figure>
 
         </div>
       </article>
